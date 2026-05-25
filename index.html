@@ -198,7 +198,7 @@ body{font-family:'Barlow',sans-serif;background:#f7f8fa;color:var(--text);min-he
     </div>
   </div>
   <div class="header-right">
-    <span class="header-client">Welcome back, <strong>Tom & Linda Garrett</strong></span>
+    <span class="header-client">Welcome back, <strong id="header-name">&nbsp;</strong></span>
   </div>
 </div>
 
@@ -531,6 +531,8 @@ async function loadProject(){
     document.getElementById('stat-amount').textContent = p.saleAmount || '\u2014';
     document.getElementById('stat-signed').textContent = p.saleDate || '\u2014';
     document.getElementById('stat-install').textContent = p.installDate || 'TBD';
+    var hn = document.getElementById('header-name');
+    if(hn) hn.textContent = p.name || '';
 
     // personalize the donation thank-you greeting with first name
     if(p.name){
