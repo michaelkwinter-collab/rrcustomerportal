@@ -1,0 +1,25 @@
+# Resilient Roofing — Client Portal
+# Standalone Netlify site (separate from the rep follow-up system)
+
+[build]
+  # No build step — static HTML served from repo root
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  # Functions run on Node 18+
+  node_bundler = "esbuild"
+
+# Serverless API routes are reachable at /api/* (cleaner than /.netlify/functions/*)
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Security headers for a homeowner-facing public page
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
