@@ -108,22 +108,38 @@ body{font-family:'Barlow',sans-serif;background:#f7f8fa;color:var(--text);min-he
 .team-contact{font-size:12px;color:var(--navy);margin-top:4px;text-decoration:none;display:flex;align-items:center;gap:4px}
 .team-contact:hover{text-decoration:underline}
 
-/* CHARITY */
-.charity-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.charity-card{background:var(--white);border:2px solid var(--border);border-radius:14px;padding:20px 16px;cursor:pointer;transition:all .2s;text-align:center;position:relative}
-.charity-card:hover{border-color:#a3b4d4;transform:translateY(-2px);box-shadow:0 4px 16px rgba(27,46,107,.08)}
-.charity-card.selected{border-color:var(--navy);background:#f0f4ff}
-.charity-check{position:absolute;top:10px;right:12px;width:22px;height:22px;border-radius:50%;background:var(--navy);display:none;align-items:center;justify-content:center}
-.charity-card.selected .charity-check{display:flex}
-.charity-logo{height:64px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
-.charity-logo img{max-height:64px;max-width:100%;object-fit:contain}
-.charity-name{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px;letter-spacing:.02em}
-.charity-desc{font-size:12px;color:var(--text3);line-height:1.5;margin-bottom:12px}
-.charity-btn{width:100%;padding:8px 0;border-radius:7px;font-family:'Barlow',sans-serif;font-weight:600;font-size:13px;border:1.5px solid var(--navy);color:var(--navy);background:transparent;cursor:pointer;transition:all .2s}
-.charity-card.selected .charity-btn{background:var(--navy);color:var(--white)}
-.charity-card:hover .charity-btn{background:var(--navy);color:var(--white)}
-.charity-confirm{display:none;background:#f0f4ff;border:1px solid #c7d4f7;border-radius:10px;padding:12px 16px;font-size:13px;color:var(--navy);align-items:center;gap:10px;margin-top:10px}
-.charity-confirm.show{display:flex}
+/* DONATION — prompt card */
+.donate-prompt{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px 20px;text-align:center}
+.donate-icon{width:46px;height:46px;border-radius:50%;background:#f0f4ff;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.donate-prompt-title{font-size:17px;font-weight:600;color:var(--text);margin-bottom:6px}
+.donate-prompt-sub{font-size:14px;color:var(--text2);line-height:1.55;max-width:420px;margin:0 auto 18px}
+.donate-cta{display:inline-block;width:100%;max-width:300px;padding:13px 0;background:var(--navy);color:var(--white);font-family:'Barlow',sans-serif;font-weight:600;font-size:15px;border:none;border-radius:9px;cursor:pointer;transition:background .15s}
+.donate-cta:hover{background:var(--navy-light)}
+
+/* DONATION — locked thank-you card */
+.donate-thanks{display:none;background:#f0f4ff;border:1px solid #c7d4f7;border-radius:14px;padding:24px 20px;text-align:center}
+.donate-thanks.show{display:block}
+.donate-thanks-logo{width:150px;height:96px;border-radius:10px;background:var(--white);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;padding:12px}
+.donate-thanks-logo img{max-width:100%;max-height:100%;object-fit:contain}
+.donate-thanks-title{font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:700;color:var(--navy);margin-bottom:6px;letter-spacing:.02em}
+.donate-thanks-sub{font-size:14px;color:var(--text2);line-height:1.55;max-width:380px;margin:0 auto}
+.donate-thanks-sub strong{color:var(--navy);font-weight:600}
+
+/* DONATION — modal (slides from bottom on mobile) */
+.donate-modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:500;align-items:flex-end;justify-content:center}
+.donate-modal-bg.open{display:flex}
+.donate-modal{background:var(--white);border-radius:18px 18px 0 0;width:100%;max-width:480px;max-height:92vh;overflow-y:auto;padding:24px 18px calc(18px + env(safe-area-inset-bottom))}
+.donate-modal-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px}
+.donate-modal-title{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:700;color:var(--navy);letter-spacing:.01em}
+.donate-modal-close{background:none;border:none;color:var(--gray);cursor:pointer;padding:4px;line-height:1;font-size:0}
+.donate-modal-sub{font-size:14px;color:var(--text3);line-height:1.5;margin-bottom:20px}
+.donate-opt{width:100%;background:var(--white);border:1.5px solid var(--border);border-radius:13px;padding:14px;margin-bottom:12px;cursor:pointer;display:flex;align-items:center;gap:14px;text-align:left;transition:all .15s;font-family:'Barlow',sans-serif}
+.donate-opt:last-child{margin-bottom:0}
+.donate-opt:hover,.donate-opt:active{border-color:var(--navy);background:var(--blue-bg)}
+.donate-opt-logo{width:96px;height:68px;border-radius:9px;background:var(--white);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:8px}
+.donate-opt-logo img{max-width:100%;max-height:100%;object-fit:contain}
+.donate-opt-name{font-size:15px;font-weight:600;color:var(--text);margin-bottom:3px}
+.donate-opt-desc{font-size:13px;color:var(--text3);line-height:1.4}
 .referral-card{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,#2a4a9f 100%);border-radius:14px;overflow:hidden;display:flex;align-items:stretch}
 .referral-left{flex:1;padding:28px 32px}
 .referral-eyebrow{font-size:11px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
@@ -205,7 +221,7 @@ body{font-family:'Barlow',sans-serif;background:#f7f8fa;color:var(--text);min-he
         <div class="hero-stat-l">Signed</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-n">Est. June 3</div>
+        <div class="hero-stat-n">TBD</div>
         <div class="hero-stat-l">Install date</div>
       </div>
     </div>
@@ -232,33 +248,23 @@ body{font-family:'Barlow',sans-serif;background:#f7f8fa;color:var(--text);min-he
     </div>
   </div>
 
-  <!-- CHARITY SELECTION -->
+  <!-- DONATION SELECTION -->
   <div class="section">
     <div class="section-title">Your donation</div>
-    <p style="font-size:14px;color:var(--text2);margin-bottom:16px;line-height:1.55">As a thank-you for choosing Resilient Roofing, we make a donation on your behalf. Choose the cause that matters most to you.</p>
-    <div class="charity-grid">
-      <div class="charity-card" id="card-ww" onclick="selectCharity('ww','Wounded Warrior Project')">
-        <div class="charity-check"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="charity-logo"><img src="wounded-warrior.webp" alt="Wounded Warrior Project"></div>
-        <div class="charity-desc">Supporting veterans and service members injured in the line of duty</div>
-        <button class="charity-btn">Choose this</button>
+
+    <div class="donate-prompt" id="donate-prompt">
+      <div class="donate-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-9.6-9.2C1.1 8.6 2.6 5.5 5.6 5.1c1.9-.3 3.6.8 4.4 2.3.8-1.5 2.5-2.6 4.4-2.3 3 .4 4.5 3.5 3.2 6.7C19.5 16.4 12 21 12 21z" stroke="#1B2E6B" stroke-width="1.6" fill="none" stroke-linejoin="round"/></svg>
       </div>
-      <div class="charity-card" id="card-hs" onclick="selectCharity('hs','SD Humane Society')">
-        <div class="charity-check"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="charity-logo"><img src="humane-society.webp" alt="San Diego Humane Society"></div>
-        <div class="charity-desc">Caring for animals and strengthening the human-animal bond in San Diego</div>
-        <button class="charity-btn">Choose this</button>
-      </div>
-      <div class="charity-card" id="card-fb" onclick="selectCharity('fb','SD Food Bank')">
-        <div class="charity-check"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="charity-logo"><img src="food-bank.webp" alt="San Diego Food Bank"></div>
-        <div class="charity-desc">Fighting hunger and providing food security for San Diego families in need</div>
-        <button class="charity-btn">Choose this</button>
-      </div>
+      <div class="donate-prompt-title">We donate on your behalf</div>
+      <div class="donate-prompt-sub">As a thank-you for choosing Resilient Roofing, we make a donation to a local cause. Choose the one that means the most to you.</div>
+      <button class="donate-cta" onclick="openDonate()">Choose your cause</button>
     </div>
-    <div class="charity-confirm" id="charity-confirm">
-      <span style="font-size:20px">💙</span>
-      <span>Thank you — your donation will go to <strong id="charity-confirm-name"></strong>. We appreciate you being part of the Resilient family.</span>
+
+    <div class="donate-thanks" id="donate-thanks">
+      <div class="donate-thanks-logo"><img id="donate-thanks-img" src="" alt=""></div>
+      <div class="donate-thanks-title">Thank you, Tom &amp; Linda</div>
+      <div class="donate-thanks-sub">Your donation will go to <strong id="donate-thanks-name"></strong>. We appreciate you being part of the Resilient family.</div>
     </div>
   </div>
 
@@ -447,6 +453,34 @@ body{font-family:'Barlow',sans-serif;background:#f7f8fa;color:var(--text);min-he
   <div class="footer-sub">San Diego · Licensed · Insured · Bonded · License #1234567</div>
 </div>
 
+<!-- DONATION MODAL -->
+<div class="donate-modal-bg" id="donate-modal" onclick="closeDonate()">
+  <div class="donate-modal" onclick="event.stopPropagation()">
+    <div class="donate-modal-head">
+      <div class="donate-modal-title">Pick your cause</div>
+      <button class="donate-modal-close" onclick="closeDonate()" aria-label="Close">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#7F8C96" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="donate-modal-sub">We'll make a donation to whichever cause means the most to you.</div>
+
+    <button class="donate-opt" onclick="chooseDonation('ww','Wounded Warrior Project','wounded-warrior.webp')">
+      <div class="donate-opt-logo"><img src="wounded-warrior.webp" alt="Wounded Warrior Project"></div>
+      <div><div class="donate-opt-name">Wounded Warrior Project</div><div class="donate-opt-desc">Veterans and service members injured in the line of duty</div></div>
+    </button>
+
+    <button class="donate-opt" onclick="chooseDonation('hs','SD Humane Society','humane-society.webp')">
+      <div class="donate-opt-logo"><img src="humane-society.webp" alt="San Diego Humane Society"></div>
+      <div><div class="donate-opt-name">SD Humane Society</div><div class="donate-opt-desc">Caring for animals across San Diego County</div></div>
+    </button>
+
+    <button class="donate-opt" onclick="chooseDonation('fb','SD Food Bank','food-bank.webp')">
+      <div class="donate-opt-logo"><img src="food-bank.webp" alt="San Diego Food Bank"></div>
+      <div><div class="donate-opt-name">SD Food Bank</div><div class="donate-opt-desc">Fighting hunger for San Diego families in need</div></div>
+    </button>
+  </div>
+</div>
+
 <!-- REFERRAL MODAL -->
 <div class="modal-bg" id="referral-modal" onclick="closeReferral()">
   <div class="modal" onclick="event.stopPropagation()">
@@ -480,12 +514,16 @@ body{font-family:'Barlow',sans-serif;background:#f7f8fa;color:var(--text);min-he
 </div>
 
 <script>
-function selectCharity(id, name) {
-  document.querySelectorAll('.charity-card').forEach(function(c){c.classList.remove('selected');});
-  document.getElementById('card-'+id).classList.add('selected');
-  document.getElementById('charity-confirm-name').textContent = name;
-  document.getElementById('charity-confirm').classList.add('show');
-  // TODO: PATCH Airtable with donation_choice
+function openDonate(){document.getElementById('donate-modal').classList.add('open');document.body.style.overflow='hidden';}
+function closeDonate(){document.getElementById('donate-modal').classList.remove('open');document.body.style.overflow='';}
+function chooseDonation(id, name, logo){
+  document.getElementById('donate-thanks-name').textContent = name;
+  var img = document.getElementById('donate-thanks-img');
+  img.src = logo; img.alt = name;
+  document.getElementById('donate-prompt').style.display = 'none';
+  document.getElementById('donate-thanks').classList.add('show');
+  closeDonate();
+  // TODO: push donation choice to JobNimbus (id = '+id+')
 }
 function openReferral(){document.getElementById('referral-modal').classList.add('open');}
 function closeReferral(){
