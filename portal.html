@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Project — Resilient Roofing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B2E6B;
+  --navy-light:#243a87;
+  --navy-dark:#111d45;
+  --gray:#7F8C96;
+  --gray-light:#a8b4bc;
+  --gray-pale:#f0f2f4;
+  --white:#ffffff;
+  --text:#1a1a2e;
+  --text2:#555;
+  --text3:#888;
+  --border:#e2e6ea;
+  --green:#22c55e;
+  --green-bg:#f0fdf4;
+  --amber:#f59e0b;
+  --amber-bg:#fffbeb;
+  --blue-bg:#eff6ff;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:#f7f8fa;color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* HEADER */
+.header{background:var(--navy);padding:0 32px;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.header-logo{display:flex;align-items:center;gap:12px}
+.logo-mark{width:36px;height:36px}
+.logo-text{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;color:var(--white);letter-spacing:.04em;line-height:1.1}
+.logo-sub{font-size:11px;color:rgba(255,255,255,.5);font-weight:400;letter-spacing:.06em;text-transform:uppercase}
+.header-right{display:flex;align-items:center;gap:12px}
+.header-client{font-size:13px;color:rgba(255,255,255,.7);font-weight:400}
+.header-client strong{color:var(--white);font-weight:600}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,#2a4a9f 100%);padding:48px 32px 40px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:rgba(255,255,255,.03);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-80px;left:20%;width:200px;height:200px;background:rgba(255,255,255,.02);border-radius:50%}
+.hero-inner{max-width:900px;margin:0 auto;position:relative}
+.hero-greeting{font-size:13px;color:rgba(255,255,255,.6);font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.hero-name{font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:700;color:var(--white);letter-spacing:.01em;line-height:1;margin-bottom:6px}
+.hero-address{font-size:15px;color:rgba(255,255,255,.6);margin-bottom:28px}
+.hero-stats{display:flex;gap:24px;flex-wrap:wrap}
+.hero-stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 18px;backdrop-filter:blur(4px)}
+.hero-stat-n{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--white);line-height:1}
+.hero-stat-l{font-size:11px;color:rgba(255,255,255,.55);font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+
+/* MAIN */
+.main{max-width:900px;margin:0 auto;padding:32px}
+
+/* SECTION */
+.section{margin-bottom:28px}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:0}
+.timeline-item{display:flex;gap:16px;position:relative}
+.timeline-item:not(:last-child)::before{content:'';position:absolute;left:15px;top:32px;bottom:-12px;width:2px;background:var(--border);z-index:0}
+.tl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;z-index:1}
+.tl-dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tl-dot.done{background:var(--navy);color:var(--white)}
+.tl-dot.active{background:var(--amber);color:var(--white)}
+.tl-dot.upcoming{background:var(--white);border:2px solid var(--border);color:var(--gray)}
+.tl-dot svg{width:14px;height:14px}
+.tl-body{flex:1;padding:4px 0 20px}
+.tl-title{font-size:15px;font-weight:600;color:var(--text);line-height:1.3}
+.tl-sub{font-size:13px;color:var(--text3);margin-top:2px}
+.tl-date{font-size:12px;color:var(--gray-light);margin-top:3px;font-weight:500}
+.tl-active-badge{display:inline-block;font-size:11px;font-weight:600;padding:2px 10px;border-radius:20px;background:var(--amber-bg);color:#92400e;border:1px solid #fcd34d;margin-top:4px;text-transform:uppercase;letter-spacing:.04em}
+
+/* DOCS */
+.doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.doc-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .15s;text-decoration:none}
+.doc-card:hover{border-color:var(--navy);background:var(--blue-bg);transform:translateY(-1px)}
+.doc-icon{width:38px;height:38px;border-radius:8px;background:#fef2f2;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.doc-icon.pdf{background:#fef2f2}
+.doc-icon.img{background:var(--blue-bg)}
+.doc-info{}
+.doc-name{font-size:13px;font-weight:600;color:var(--text)}
+.doc-size{font-size:11px;color:var(--text3);margin-top:2px}
+
+/* PHOTOS */
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}
+.photo-thumb{border-radius:8px;overflow:hidden;aspect-ratio:4/3;background:var(--gray-pale);cursor:pointer;position:relative}
+.photo-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .2s}
+.photo-thumb:hover img{transform:scale(1.04)}
+.photo-tag{position:absolute;bottom:6px;left:6px;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:.04em}
+.tag-before{background:rgba(0,0,0,.6);color:#fff}
+.tag-after{background:var(--navy);color:#fff}
+.photo-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--gray-pale);border-radius:8px;border:1px dashed var(--border)}
+.photo-placeholder-text{font-size:11px;color:var(--text3);text-align:center;padding:8px}
+
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.team-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;display:flex;align-items:center;gap:12px}
+.team-avatar{width:44px;height:44px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:var(--white);flex-shrink:0}
+.team-info{}
+.team-name{font-size:14px;font-weight:600;color:var(--text)}
+.team-role{font-size:12px;color:var(--text3);margin-top:1px}
+.team-contact{font-size:12px;color:var(--navy);margin-top:4px;text-decoration:none;display:flex;align-items:center;gap:4px}
+.team-contact:hover{text-decoration:underline}
+
+/* CHARITY */
+.charity-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.charity-card{background:var(--white);border:2px solid var(--border);border-radius:14px;padding:20px 16px;cursor:pointer;transition:all .2s;text-align:center;position:relative}
+.charity-card:hover{border-color:#a3b4d4;transform:translateY(-2px);box-shadow:0 4px 16px rgba(27,46,107,.08)}
+.charity-card.selected{border-color:var(--navy);background:#f0f4ff}
+.charity-check{position:absolute;top:10px;right:12px;width:22px;height:22px;border-radius:50%;background:var(--navy);display:none;align-items:center;justify-content:center}
+.charity-card.selected .charity-check{display:flex}
+.charity-logo{height:64px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.charity-logo img{max-height:64px;max-width:100%;object-fit:contain}
+.charity-name{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px;letter-spacing:.02em}
+.charity-desc{font-size:12px;color:var(--text3);line-height:1.5;margin-bottom:12px}
+.charity-btn{width:100%;padding:8px 0;border-radius:7px;font-family:'Barlow',sans-serif;font-weight:600;font-size:13px;border:1.5px solid var(--navy);color:var(--navy);background:transparent;cursor:pointer;transition:all .2s}
+.charity-card.selected .charity-btn{background:var(--navy);color:var(--white)}
+.charity-card:hover .charity-btn{background:var(--navy);color:var(--white)}
+.charity-confirm{display:none;background:#f0f4ff;border:1px solid #c7d4f7;border-radius:10px;padding:12px 16px;font-size:13px;color:var(--navy);align-items:center;gap:10px;margin-top:10px}
+.charity-confirm.show{display:flex}
+.referral-card{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,#2a4a9f 100%);border-radius:14px;overflow:hidden;display:flex;align-items:stretch}
+.referral-left{flex:1;padding:28px 32px}
+.referral-eyebrow{font-size:11px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.referral-title{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:700;color:var(--white);letter-spacing:.01em;line-height:1.1;margin-bottom:8px}
+.referral-sub{font-size:14px;color:rgba(255,255,255,.7);line-height:1.55;max-width:360px;margin-bottom:20px}
+.referral-btn{background:var(--white);color:var(--navy);font-family:'Barlow',sans-serif;font-weight:700;font-size:14px;padding:12px 24px;border-radius:8px;border:none;cursor:pointer;display:inline-block;letter-spacing:.02em;transition:all .15s}
+.referral-btn:hover{background:var(--gray-pale);transform:translateY(-1px)}
+.referral-right{width:150px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;padding:20px;border-left:1px solid rgba(255,255,255,.08);flex-shrink:0}
+.referral-stat{text-align:center}
+.referral-stat-n{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:700;color:var(--white);line-height:1}
+.referral-stat-l{font-size:10px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.06em;margin-top:3px;line-height:1.3}
+.referral-stat-div{width:32px;height:1px;background:rgba(255,255,255,.15)}
+
+/* CONTACT BAR */
+.contact-bar{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.contact-bar-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2)}
+.contact-bar-item a{color:var(--navy);text-decoration:none;font-weight:500}
+.contact-bar-item a:hover{text-decoration:underline}
+.contact-sep{width:1px;height:20px;background:var(--border)}
+
+/* FOOTER */
+.footer{background:var(--navy-dark);padding:24px 32px;text-align:center;margin-top:40px}
+.footer-logo{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:rgba(255,255,255,.4);letter-spacing:.06em;text-transform:uppercase}
+.footer-sub{font-size:12px;color:rgba(255,255,255,.25);margin-top:4px}
+
+/* MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:500;align-items:center;justify-content:center;padding:20px}
+.modal-bg.open{display:flex}
+.modal{background:var(--white);border-radius:16px;padding:28px;max-width:420px;width:100%}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.modal-sub{font-size:14px;color:var(--text3);margin-bottom:20px}
+.form-group{margin-bottom:14px}
+.form-label{font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;display:block}
+.form-input{width:100%;padding:11px 13px;border:1px solid var(--border);border-radius:8px;font-family:'Barlow',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border .15s}
+.form-input:focus{border-color:var(--navy)}
+.modal-btns{display:flex;gap:10px;margin-top:20px}
+.btn-primary{flex:2;padding:13px 0;background:var(--navy);color:var(--white);font-family:'Barlow',sans-serif;font-weight:700;font-size:14px;border:none;border-radius:8px;cursor:pointer}
+.btn-secondary{flex:1;padding:13px 0;background:var(--white);color:var(--text2);font-family:'Barlow',sans-serif;font-weight:500;font-size:14px;border:1px solid var(--border);border-radius:8px;cursor:pointer}
+.confirm-msg{display:none;text-align:center;padding:20px 0}
+.confirm-icon{font-size:36px;margin-bottom:10px}
+.confirm-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.confirm-sub{font-size:14px;color:var(--text3)}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-logo">
+    <svg class="logo-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="50,4 96,28 96,72 50,96 4,72 4,28" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="3"/>
+      <text x="50" y="62" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="42" fill="white">RR</text>
+    </svg>
+    <div>
+      <div class="logo-text">RESILIENT ROOFING</div>
+      <div class="logo-sub">Client Portal</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="header-client">Welcome back, <strong>Tom & Linda Garrett</strong></span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-greeting">Your project</div>
+    <div class="hero-name">Garrett Residence</div>
+    <div class="hero-address">4847 Crestview Dr, Santee CA 92071</div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-n">Shingle</div>
+        <div class="hero-stat-l">Material</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">$18,400</div>
+        <div class="hero-stat-l">Contract value</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">May 8</div>
+        <div class="hero-stat-l">Signed</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">Est. June 3</div>
+        <div class="hero-stat-l">Install date</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- CONTACT BAR -->
+  <div class="contact-bar" style="margin-bottom:20px">
+    <div class="contact-bar-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10 21 3 14 3 5.5c0-.6.4-1 1-1H8c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" stroke="#7F8C96" stroke-width="1.5" fill="none"/></svg>
+      Questions? <a href="tel:6195551234">(619) 555-1234</a>
+    </div>
+    <div class="contact-sep"></div>
+    <div class="contact-bar-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#7F8C96" stroke-width="1.5" fill="none"/><polyline points="22,6 12,13 2,6" stroke="#7F8C96" stroke-width="1.5" fill="none"/></svg>
+      Email: <a href="mailto:info@resilientroofing.com">info@resilientroofing.com</a>
+    </div>
+    <div class="contact-sep"></div>
+    <div class="contact-bar-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#7F8C96" stroke-width="1.5" fill="none"/><polyline points="12,6 12,12 16,14" stroke="#7F8C96" stroke-width="1.5" fill="none"/></svg>
+      License #1234567 · Insured · Bonded
+    </div>
+  </div>
+
+  <!-- CHARITY SELECTION -->
+  <div class="section">
+    <div class="section-title">Your donation</div>
+    <p style="font-size:14px;color:var(--text2);margin-bottom:16px;line-height:1.55">As a thank-you for choosing Resilient Roofing, we make a donation on your behalf. Choose the cause that matters most to you.</p>
+    <div class="charity-grid">
+      <div class="charity-card" id="card-ww" onclick="selectCharity('ww','Wounded Warrior Project')">
+        <div class="charity-check"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="charity-logo"><img src="wounded-warrior.webp" alt="Wounded Warrior Project"></div>
+        <div class="charity-desc">Supporting veterans and service members injured in the line of duty</div>
+        <button class="charity-btn">Choose this</button>
+      </div>
+      <div class="charity-card" id="card-hs" onclick="selectCharity('hs','SD Humane Society')">
+        <div class="charity-check"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="charity-logo"><img src="humane-society.webp" alt="San Diego Humane Society"></div>
+        <div class="charity-desc">Caring for animals and strengthening the human-animal bond in San Diego</div>
+        <button class="charity-btn">Choose this</button>
+      </div>
+      <div class="charity-card" id="card-fb" onclick="selectCharity('fb','SD Food Bank')">
+        <div class="charity-check"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="charity-logo"><img src="food-bank.webp" alt="San Diego Food Bank"></div>
+        <div class="charity-desc">Fighting hunger and providing food security for San Diego families in need</div>
+        <button class="charity-btn">Choose this</button>
+      </div>
+    </div>
+    <div class="charity-confirm" id="charity-confirm">
+      <span style="font-size:20px">💙</span>
+      <span>Thank you — your donation will go to <strong id="charity-confirm-name"></strong>. We appreciate you being part of the Resilient family.</span>
+    </div>
+  </div>
+
+  <!-- REFERRAL — prominent near top -->
+  <div class="section">
+    <div class="referral-card">
+      <div class="referral-left">
+        <div class="referral-eyebrow">Spread the word</div>
+        <div class="referral-title">Have a friend who needs a roof?</div>
+        <div class="referral-sub">The best compliment you can give us is an introduction. We'll treat every friend you send our way with the same care and honesty we showed you.</div>
+        <button class="referral-btn" onclick="openReferral()">Refer a friend</button>
+      </div>
+      <div class="referral-right">
+        <div class="referral-stat">
+          <div class="referral-stat-n">58+</div>
+          <div class="referral-stat-l">Years serving San Diego</div>
+        </div>
+        <div class="referral-stat-div"></div>
+        <div class="referral-stat">
+          <div class="referral-stat-n">4.8★</div>
+          <div class="referral-stat-l">Google rating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="section">
+    <div class="section-title">Project status</div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="tl-left"><div class="tl-dot done"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="tl-body"><div class="tl-title">Estimate delivered</div><div class="tl-sub">Roof inspection completed · Estimate #2610</div><div class="tl-date">April 28, 2026</div></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-left"><div class="tl-dot done"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="tl-body"><div class="tl-title">Contract signed</div><div class="tl-sub">Welcome letter sent · Project officially underway</div><div class="tl-date">May 8, 2026</div></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-left"><div class="tl-dot done"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="tl-body"><div class="tl-title">Permit submitted</div><div class="tl-sub">City of Santee building permit application filed</div><div class="tl-date">May 12, 2026</div></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-left"><div class="tl-dot active"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" fill="white"/></svg></div></div>
+        <div class="tl-body">
+          <div class="tl-title">Awaiting permit approval</div>
+          <div class="tl-sub">City review typically takes 5–10 business days</div>
+          <div class="tl-date">In progress</div>
+          <span class="tl-active-badge">Current stage</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-left"><div class="tl-dot upcoming"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#7F8C96" stroke-width="1.5" fill="none"/></svg></div></div>
+        <div class="tl-body"><div class="tl-title">Materials ordered & scheduled</div><div class="tl-sub">Materials delivery confirmed · Install date set</div><div class="tl-date">Upcoming</div></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-left"><div class="tl-dot upcoming"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#7F8C96" stroke-width="1.5" fill="none"/></svg></div></div>
+        <div class="tl-body"><div class="tl-title">Roof installation</div><div class="tl-sub">Full crew on site · Estimated 1–2 days</div><div class="tl-date">Est. June 3, 2026</div></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-left"><div class="tl-dot upcoming"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#7F8C96" stroke-width="1.5" fill="none"/></svg></div></div>
+        <div class="tl-body"><div class="tl-title">Final inspection</div><div class="tl-sub">City inspection · Certificate of completion</div><div class="tl-date">Upcoming</div></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-left"><div class="tl-dot upcoming"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#7F8C96" stroke-width="1.5" fill="none"/></svg></div></div>
+        <div class="tl-body"><div class="tl-title">Warranty registration</div><div class="tl-sub">Manufacturer warranty registered · Documents delivered</div><div class="tl-date">Upcoming</div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DOCUMENTS -->
+  <div class="section">
+    <div class="section-title">Your documents</div>
+    <div class="doc-grid">
+      <a href="#" class="doc-card">
+        <div class="doc-icon pdf">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#ef4444" stroke-width="1.5" fill="none"/><polyline points="14,2 14,8 20,8" stroke="#ef4444" stroke-width="1.5" fill="none"/><text x="8" y="17" font-size="5" fill="#ef4444" font-family="Arial" font-weight="700">PDF</text></svg>
+        </div>
+        <div class="doc-info"><div class="doc-name">Signed contract</div><div class="doc-size">PDF · 284 KB · May 8</div></div>
+      </a>
+      <a href="#" class="doc-card">
+        <div class="doc-icon pdf">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#ef4444" stroke-width="1.5" fill="none"/><polyline points="14,2 14,8 20,8" stroke="#ef4444" stroke-width="1.5" fill="none"/><text x="8" y="17" font-size="5" fill="#ef4444" font-family="Arial" font-weight="700">PDF</text></svg>
+        </div>
+        <div class="doc-info"><div class="doc-name">Estimate #2610</div><div class="doc-size">PDF · 156 KB · April 28</div></div>
+      </a>
+      <a href="#" class="doc-card">
+        <div class="doc-icon pdf">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#ef4444" stroke-width="1.5" fill="none"/><polyline points="14,2 14,8 20,8" stroke="#ef4444" stroke-width="1.5" fill="none"/><text x="8" y="17" font-size="5" fill="#ef4444" font-family="Arial" font-weight="700">PDF</text></svg>
+        </div>
+        <div class="doc-info"><div class="doc-name">Permit application</div><div class="doc-size">PDF · 92 KB · May 12</div></div>
+      </a>
+      <a href="#" class="doc-card" style="opacity:.5;cursor:not-allowed">
+        <div class="doc-icon pdf">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#ccc" stroke-width="1.5" fill="none"/><polyline points="14,2 14,8 20,8" stroke="#ccc" stroke-width="1.5" fill="none"/></svg>
+        </div>
+        <div class="doc-info"><div class="doc-name">Warranty certificate</div><div class="doc-size">Available after completion</div></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- PHOTOS -->
+  <div class="section">
+    <div class="section-title">Project photos</div>
+    <div class="photo-grid">
+      <div class="photo-thumb">
+        <div class="photo-placeholder"><div class="photo-placeholder-text">Before photos<br>added at inspection</div></div>
+        <span class="photo-tag tag-before">Before</span>
+      </div>
+      <div class="photo-thumb">
+        <div class="photo-placeholder"><div class="photo-placeholder-text">Before photos<br>added at inspection</div></div>
+        <span class="photo-tag tag-before">Before</span>
+      </div>
+      <div class="photo-thumb">
+        <div class="photo-placeholder"><div class="photo-placeholder-text">Before photos<br>added at inspection</div></div>
+        <span class="photo-tag tag-before">Before</span>
+      </div>
+      <div class="photo-thumb" style="opacity:.4">
+        <div class="photo-placeholder"><div class="photo-placeholder-text">After photos<br>added at completion</div></div>
+        <span class="photo-tag tag-after">After</span>
+      </div>
+      <div class="photo-thumb" style="opacity:.4">
+        <div class="photo-placeholder"><div class="photo-placeholder-text">After photos<br>added at completion</div></div>
+        <span class="photo-tag tag-after">After</span>
+      </div>
+      <div class="photo-thumb" style="opacity:.4">
+        <div class="photo-placeholder"><div class="photo-placeholder-text">After photos<br>added at completion</div></div>
+        <span class="photo-tag tag-after">After</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEAM -->
+  <div class="section">
+    <div class="section-title">Your team</div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">MW</div>
+        <div class="team-info">
+          <div class="team-name">Mike Winter</div>
+          <div class="team-role">Sales representative</div>
+          <a href="tel:6195551111" class="team-contact">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10 21 3 14 3 5.5c0-.6.4-1 1-1H8c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" stroke="#1B2E6B" stroke-width="1.5" fill="none"/></svg>
+            (619) 555-1111
+          </a>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:#2d4a9f">TF</div>
+        <div class="team-info">
+          <div class="team-name">Thammy Fritzsche</div>
+          <div class="team-role">Client coordinator</div>
+          <a href="mailto:thammy.f@resilientroofing.com" class="team-contact">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#1B2E6B" stroke-width="1.5" fill="none"/><polyline points="22,6 12,13 2,6" stroke="#1B2E6B" stroke-width="1.5" fill="none"/></svg>
+            Email Thammy
+          </a>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:#374151">JV</div>
+        <div class="team-info">
+          <div class="team-name">Jose Vera</div>
+          <div class="team-role">Production coordinator</div>
+          <a href="tel:6195552222" class="team-contact">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10 21 3 14 3 5.5c0-.6.4-1 1-1H8c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" stroke="#1B2E6B" stroke-width="1.5" fill="none"/></svg>
+            (619) 555-2222
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-logo">Resilient Roofing</div>
+  <div class="footer-sub">San Diego · Licensed · Insured · Bonded · License #1234567</div>
+</div>
+
+<!-- REFERRAL MODAL -->
+<div class="modal-bg" id="referral-modal" onclick="closeReferral()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div id="referral-form-view">
+      <div class="modal-title">Refer a friend</div>
+      <div class="modal-sub">We'll reach out to them and take great care of them — just like we did for you.</div>
+      <div class="form-group">
+        <label class="form-label">Their name</label>
+        <input class="form-input" type="text" placeholder="John Smith" id="ref-name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Their phone number</label>
+        <input class="form-input" type="tel" placeholder="(619) 555-0000" id="ref-phone">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Anything we should know?</label>
+        <input class="form-input" type="text" placeholder="e.g. they just noticed a leak..." id="ref-note">
+      </div>
+      <div class="modal-btns">
+        <button class="btn-primary" onclick="submitReferral()">Send referral</button>
+        <button class="btn-secondary" onclick="closeReferral()">Cancel</button>
+      </div>
+    </div>
+    <div class="confirm-msg" id="referral-confirm">
+      <div class="confirm-icon">🙌</div>
+      <div class="confirm-title">Thank you!</div>
+      <div class="confirm-sub">We'll be in touch with your friend soon. We really appreciate the trust.</div>
+      <div style="margin-top:16px"><button class="btn-primary" onclick="closeReferral()" style="width:100%">Close</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function selectCharity(id, name) {
+  document.querySelectorAll('.charity-card').forEach(function(c){c.classList.remove('selected');});
+  document.getElementById('card-'+id).classList.add('selected');
+  document.getElementById('charity-confirm-name').textContent = name;
+  document.getElementById('charity-confirm').classList.add('show');
+  // TODO: PATCH Airtable with donation_choice
+}
+function openReferral(){document.getElementById('referral-modal').classList.add('open');}
+function closeReferral(){
+  document.getElementById('referral-modal').classList.remove('open');
+  setTimeout(function(){
+    document.getElementById('referral-form-view').style.display='block';
+    document.getElementById('referral-confirm').style.display='none';
+    document.getElementById('ref-name').value='';
+    document.getElementById('ref-phone').value='';
+    document.getElementById('ref-note').value='';
+  },300);
+}
+function submitReferral(){
+  var name=document.getElementById('ref-name').value.trim();
+  var phone=document.getElementById('ref-phone').value.trim();
+  if(!name||!phone){alert('Please enter a name and phone number.');return;}
+  document.getElementById('referral-form-view').style.display='none';
+  document.getElementById('referral-confirm').style.display='block';
+}
+</script>
+</body>
+</html>
