@@ -205,23 +205,19 @@ body{font-family:'Barlow',sans-serif;background:#f7f8fa;color:var(--text);min-he
 <div class="hero">
   <div class="hero-inner">
     <div class="hero-greeting">Your project</div>
-    <div class="hero-name">Garrett Residence</div>
-    <div class="hero-address">4847 Crestview Dr, Santee CA 92071</div>
+    <div class="hero-name" id="hero-name">&nbsp;</div>
+    <div class="hero-address" id="hero-address">&nbsp;</div>
     <div class="hero-stats">
       <div class="hero-stat">
-        <div class="hero-stat-n">Shingle</div>
-        <div class="hero-stat-l">Material</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-n">$18,400</div>
+        <div class="hero-stat-n" id="stat-amount">&mdash;</div>
         <div class="hero-stat-l">Contract value</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-n">May 8</div>
+        <div class="hero-stat-n" id="stat-signed">&mdash;</div>
         <div class="hero-stat-l">Signed</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-n">TBD</div>
+        <div class="hero-stat-n" id="stat-install">TBD</div>
         <div class="hero-stat-l">Install date</div>
       </div>
     </div>
@@ -513,6 +509,41 @@ body{font-family:'Barlow',sans-serif;background:#f7f8fa;color:var(--text);min-he
 </div>
 
 <script>
+// ---- Load live project data from JobNimbus ----
+function getContactId(){
+  return new URLSearchParams(window.location.search).get('contact');
+}
+
+async function loadProject(){
+  var jnid = getContactId();
+  if(!jnid){
+    document.getElementById('hero-name').textContent = 'Welcome';
+    document.getElementById('hero-address').textContent = '';
+    return;
+  }
+  try{
+    var res = await fetch('/api/get-project?contact=' + encodeURIComponent(jnid));
+    if(!res.ok) throw new Error('lookup failed');
+    var p = await res.json();
+
+    document.getElementById('hero-name').textContent = p.name || 'Your project';
+    document.getElementById('hero-address').textContent = p.address || '';
+    document.getElementById('stat-amount').textContent = p.saleAmount || '\u2014';
+    document.getElementById('stat-signed').textContent = p.saleDate || '\u2014';
+    document.getElementById('stat-install').textContent = p.installDate || 'TBD';
+
+    // personalize the donation thank-you greeting with first name
+    if(p.name){
+      var first = p.name.split(' ')[0];
+      var t = document.querySelector('.donate-thanks-title');
+      if(t) t.textContent = 'Thank you, ' + first;
+    }
+  }catch(e){
+    document.getElementById('hero-name').textContent = 'Your project';
+  }
+}
+document.addEventListener('DOMContentLoaded', loadProject);
+
 function openDonate(){document.getElementById('donate-modal').classList.add('open');document.body.style.overflow='hidden';}
 function closeDonate(){document.getElementById('donate-modal').classList.remove('open');document.body.style.overflow='';}
 function chooseDonation(id, name, logo){
